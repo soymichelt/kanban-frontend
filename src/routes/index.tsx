@@ -5,7 +5,7 @@ import {
 import { Home } from './../pages/home';
 import { Signin } from './../pages/signin';
 import { Signup } from './../pages/signup';
-import { Header } from '../shared/components/header';
+import { Profile } from '../pages/profile';
 
 
 const router = createBrowserRouter([
@@ -21,15 +21,14 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <Signup />,
   },
+  {
+    path: '/profile',
+    element: <Profile />,
+  },
 ]);
 
 export const RouterComponent = () => {
   return (
-    <>
-      <Header />
-      <main>
-        <RouterProvider router={router} />
-      </main>
-    </>
+    <RouterProvider router={router} />
   );
 };
