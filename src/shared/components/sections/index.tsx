@@ -11,7 +11,7 @@ export type SectionsProps = {
   loading: boolean;
   onComplete: (itemId: string) => void;
   onEdit: (item: ItemType) => void;
-  completeId?: string;
+  completeId?: string | null;
 };
 
 export const Sections = (props: SectionsProps) => {
@@ -31,7 +31,6 @@ export const Sections = (props: SectionsProps) => {
     }}>
       <div className='todo-sections-container'>
         {sectionList && sectionList.map(section => {
-          console.log(section);
           return (
             <Droppable
               key={section.sectionId}
