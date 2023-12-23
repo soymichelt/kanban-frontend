@@ -1,0 +1,2 @@
+export const API_URL = import.meta.env.API_URL || 'https://gp5pqokde1.execute-api.us-east-1.amazonaws.com/v1';
+export const API_HOST_HEADER = import.meta.env.API_HOST_HEADER || 'gp5pqokde1.execute-api.us-east-1.amazonaws.com';
