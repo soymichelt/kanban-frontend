@@ -1,11 +1,11 @@
 import { Header } from '../elements/header';
 
-export const Signup = () => {
+export const Profile = () => {
   return (
     <>
       <Header />
       <main>
-        <h1>Registrarse</h1>
+        <h1>Perfil usuario</h1>
       </main>
     </>
   );
