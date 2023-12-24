@@ -1,5 +1,6 @@
 main.page-component {
   background-color: rgb(238, 242, 246);
+  background-size: cover;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
