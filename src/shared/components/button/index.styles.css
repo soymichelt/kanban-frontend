@@ -16,3 +16,7 @@
   background-color: transparent;
   color: #213547;
 }
+.button.button--fullwidth {
+  width: 100%;
+  flex: 1;
+}
