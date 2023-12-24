@@ -1,6 +1,7 @@
 import { CloseRounded } from '@mui/icons-material';
 import './index.styles.css';
 import { IconButton } from '../iconButton';
+import { Button } from '../button';
 
 export type ModalProps = {
   title: string;
@@ -34,12 +35,12 @@ export const Modal = (props: ModalProps) => {
           {children}
         </div>
         <footer className={`modal__footer`}>
-          <button onClick={onAccept}>
-            {acceptButtonText ? acceptButtonText : 'Aceptar'}
-          </button>
-          <button onClick={onClose}>
+          <Button onClick={onClose} variant='secondary'>
             {cancelButtonText ? cancelButtonText : 'Cancelar'}
-          </button>
+          </Button>
+          <Button onClick={onAccept}>
+            {acceptButtonText ? acceptButtonText : 'Aceptar'}
+          </Button>
         </footer>
       </div>
     </div>

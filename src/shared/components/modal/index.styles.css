@@ -43,3 +43,12 @@
   overflow-y: auto;
   border-block: 1px solid rgba(23, 43, 77, .1);
 }
+
+.modal .modal__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal .modal__footer button {
+  margin-left: .625rem;
+}
