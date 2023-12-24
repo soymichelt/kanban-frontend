@@ -3,7 +3,7 @@
   top: 0;
   z-index: 1;
   background-color: #fff;
-  padding: 0px 20px;
+  padding: 0px 1.625rem;
   min-height: 64px;
   display: flex;
   align-items: center;
@@ -16,6 +16,7 @@
   margin: 0;
 }
 .header h2 a {
+  font-weight: 700;
   color: #172b4d;
 }
 .header h2 a span {
@@ -37,7 +38,7 @@
 .header nav a:hover {
   background-color: rgba(23, 43, 77, .1);
 }
-.header nav button, a {
+.header nav button, .header nav a {
   height: 38px;
   margin-left: .625rem;
 }
