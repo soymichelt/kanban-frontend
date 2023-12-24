@@ -3,15 +3,9 @@ import { DropResult } from 'react-beautiful-dnd';
 import { Tasks } from '../components';
 import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 import { TaskModel, all, updateState } from '../../../services/tasks';
-import { useEffect, useState } from 'react';
-
-const SECTIONS_LIST= [
-  { sectionId: '0', name: 'ToDo' },
-  { sectionId: '1', name: 'Work In Progress' },
-  { sectionId: '2', name: 'Task Blocked' },
-  { sectionId: '3', name: 'QA Testing' },
-  { sectionId: '4', name: 'Done' },
-];
+import { useContext, useEffect, useState } from 'react';
+import { SECTIONS_LIST } from '../../../shared/constants';
+import { globalState } from '../../../shared/states/global';
 
 export const TasksContainer = () => {
   const {
@@ -21,13 +15,21 @@ export const TasksContainer = () => {
     errorCatch,
   } = useDataProvider();
 
+  const {
+    refreshingTasks,
+    setRefreshingTasks,
+  } = useContext(globalState);
+
   useEffect(() => {
-    if (state.statusData === LOADING) {
+    if (state.statusData === LOADING && refreshingTasks) {
       all()
-        .then(tasks => setTasks(tasks))
+        .then(tasks => {
+          setTasks(tasks);
+          setRefreshingTasks(false);
+        })
         .catch(error => errorCatch(error));
     }
-  }, [state.isRefresh]);
+  }, [state.isRefresh, refreshingTasks]);
 
   const { data } = state || [];
 
