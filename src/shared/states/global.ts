@@ -25,6 +25,8 @@ export type GlobalStateSchema = {
   setFormEdit: (form: FormTaskStateProps) => void;
   formCreate: FormTaskStateProps;
   setFormCreate: (form: FormTaskStateProps) => void;
+  refreshingTasks: boolean;
+  setRefreshingTasks: (isRefreshing: boolean) => void;
 };
 
 export const initialGlobalState: GlobalStateSchema = {
@@ -40,6 +42,8 @@ export const initialGlobalState: GlobalStateSchema = {
     isOpen: false,
   },
   setFormCreate: () => { },
+  refreshingTasks: true,
+  setRefreshingTasks: () => { },
 };
 
 export const globalState = createContext<GlobalStateSchema>(initialGlobalState);
