@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Header as HeaderComponent } from './../../shared/components/header';
 import { globalState } from './../../shared/states/global';
-import { TaskCreateForm } from '../tasksCreate/components';
+import { TaskCreateFormContainer } from '../tasksCreate/containers';
 
 export const Header = () => {
   const { auth, setFormCreate } = useContext(globalState);
@@ -16,7 +16,7 @@ export const Header = () => {
         isLogged={auth.isLogged}
         onCreate={handleCreate}
       />
-      <TaskCreateForm />
+      <TaskCreateFormContainer />
     </>
   );
 };
