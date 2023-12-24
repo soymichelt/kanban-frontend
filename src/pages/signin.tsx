@@ -1,12 +1,14 @@
 import { Header } from '../elements/header';
+import { SigninContainer } from '../elements/signin/containers';
+import { Page } from '../shared/components/page';
 
 export const Signin = () => {
   return (
     <>
       <Header />
-      <main>
-        <h1>Iniciar sesion</h1>
-      </main>
+      <Page>
+        <SigninContainer />
+      </Page>
     </>
   );
 };

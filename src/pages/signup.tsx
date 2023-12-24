@@ -1,12 +1,13 @@
 import { Header } from '../elements/header';
+import { Page } from '../shared/components/page';
 
 export const Signup = () => {
   return (
     <>
       <Header />
-      <main>
+      <Page>
         <h1>Registrarse</h1>
-      </main>
+      </Page>
     </>
   );
 };
