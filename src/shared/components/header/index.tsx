@@ -30,10 +30,10 @@ export const Header = (props: HeaderProps) => {
           </>
         ) : (
           <>
-            <Link to={'/profile'}>
+            <Link to={'/signin'}>
               Iniciar Sesión
             </Link>
-            <Link to={'/profile'}>
+            <Link to={'/signup'}>
               Regístrate
             </Link>
           </>
