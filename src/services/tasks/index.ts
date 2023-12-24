@@ -1,6 +1,6 @@
 import { API_URL, API_HOST_HEADER } from './../config';
 
-const TASK_API_URL = `${API_URL}/tasks`
+const TASK_API_URL = `${API_URL}/tasks`;
 
 export type TaskModel = {
   taskId: string;
@@ -19,17 +19,15 @@ export const all = async (): Promise<TaskModel[]> => {
       },
       redirect: 'follow',
     })
-      .then((res) => res.text())
-      .then((data) => resolve(JSON.parse(data)))
-      .catch((error) => {
-        reject(error);
-      });
+      .then(res => res.text())
+      .then(data => resolve(JSON.parse(data)))
+      .catch(error => reject(error));
   });
 
   return fn;
 }
 
-export const create = async (task: TaskModel): Promise<TaskModel> => {
+export const create = async (task: Omit<TaskModel, 'taskId'>): Promise<TaskModel> => {
   const fn = new Promise<TaskModel>((resolve, reject) => {
     fetch(TASK_API_URL, {
       method: 'POST',
