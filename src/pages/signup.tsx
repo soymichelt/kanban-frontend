@@ -1,12 +1,17 @@
 import { Header } from '../elements/header';
+import { SignupContainer } from '../elements/signup/containers';
 import { Page } from '../shared/components/page';
+import Background from '../assets/background.png';
 
 export const Signup = () => {
   return (
     <>
       <Header />
-      <Page>
-        <h1>Registrarse</h1>
+      <Page
+        center
+        backgroundImage={Background}
+      >
+        <SignupContainer />
       </Page>
     </>
   );
