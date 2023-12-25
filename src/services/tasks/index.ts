@@ -27,7 +27,7 @@ export const all = async (): Promise<TaskModel[]> => {
   return fn;
 }
 
-export const create = async (task: Omit<TaskModel, 'taskId'>): Promise<TaskModel> => {
+export const create = async (task: Omit<TaskModel, 'taskId' | 'author'>): Promise<TaskModel> => {
   const fn = new Promise<TaskModel>((resolve, reject) => {
     fetch(TASK_API_URL, {
       method: 'POST',
