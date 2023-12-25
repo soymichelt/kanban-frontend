@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { globalState } from '../../../shared/states/global';
 import { TaskCreateForm } from '../components';
 import { create } from '../../../services/tasks';
+import { useField } from '../../../shared/hooks/useField';
 
 export const TaskCreateFormContainer = () => {
   const {
@@ -10,6 +11,10 @@ export const TaskCreateFormContainer = () => {
     setRefreshingTasks,
   } = useContext(globalState);
 
+  const descriptionField = useField('');
+  const stateField = useField('');
+  const userIdField = useField('');
+
   const handleCloseModal = () => {
     setFormCreate({ isOpen: false });
     setRefreshingTasks(true);
@@ -17,45 +22,12 @@ export const TaskCreateFormContainer = () => {
 
   const handleAcceptModal = () => {
     create({
-      description: formCreate.formData?.description as string,
-      state: formCreate.formData?.state as number,
-      author: 'Soymichel Dev',
-      userId: formCreate.formData?.userId as string,
+      description: descriptionField.value as string,
+      state: parseInt(stateField.value as string),
+      userId: userIdField.value as string,
     })
-      .then(() => {
-        setFormCreate({ isOpen: false });
-      })
+      .then(() => setFormCreate({ isOpen: false }))
       .catch(error => console.log(error));
-  };
-
-  const handleDescriptionChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    setFormCreate({
-      ...formCreate,
-      formData: {
-        ...(formCreate?.formData || {}),
-        description: e.currentTarget.value,
-      },
-    });
-  };
-
-  const handleStateChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    setFormCreate({
-      ...formCreate,
-      formData: {
-        ...(formCreate?.formData || {}),
-        state: parseInt(e.currentTarget.value),
-      },
-    });
-  };
-
-  const handleUserChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    setFormCreate({
-      ...formCreate,
-      formData: {
-        ...(formCreate?.formData || {}),
-        userId: e.currentTarget.value,
-      },
-    });
   };
 
   return (
@@ -63,12 +35,12 @@ export const TaskCreateFormContainer = () => {
       isOpen={formCreate.isOpen}
       onCloseModal={handleCloseModal}
       onAcceptModal={handleAcceptModal}
-      onDescriptionChange={handleDescriptionChange}
-      description={formCreate.formData?.description}
-      onStateChange={handleStateChange}
-      state={formCreate.formData?.state}
-      onUserChange={handleUserChange}
-      userId={formCreate.formData?.userId}
+      description={descriptionField.value}
+      onDescriptionChange={descriptionField.onChange}
+      state={parseInt(stateField.value as string)}
+      onStateChange={stateField.onChange}
+      userId={userIdField.value}
+      onUserChange={userIdField.onChange}
     />
   );
 };
