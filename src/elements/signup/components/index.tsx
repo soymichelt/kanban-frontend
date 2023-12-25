@@ -7,11 +7,29 @@ import './index.styles.css';
 
 export type SignupProps = {
   className?: string;
+  onUsernameChange?: React.ChangeEventHandler<HTMLInputElement>;
+  username?: string;
+  onEmailChange?: React.ChangeEventHandler<HTMLInputElement>;
+  email?: string;
+  onPhoneChange?: React.ChangeEventHandler<HTMLInputElement>;
+  phone?: string;
+  onPasswordChange?: React.ChangeEventHandler<HTMLInputElement>;
+  password?: string;
+  onSignupClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export const Signup = (props: SignupProps) => {
   const {
     className,
+    onUsernameChange,
+    username,
+    onEmailChange,
+    email,
+    onPhoneChange,
+    phone,
+    onPasswordChange,
+    password,
+    onSignupClick,
   } = props;
 
   return (
@@ -32,26 +50,35 @@ export const Signup = (props: SignupProps) => {
       <TextField
         label={`E - mail`}
         placeholder={`Correo electrónico`}
+        value={email}
+        onChange={onEmailChange}
       />
 
       <TextField
         label={`Teléfono`}
         placeholder={`Número telefónico`}
+        value={phone}
+        onChange={onPhoneChange}
       />
 
       <TextField
         label={`Usuario`}
         placeholder={`Nombre de usuario`}
+        value={username}
+        onChange={onUsernameChange}
       />
 
       <TextField
         label={`Contraseña`}
         placeholder={`Contraseña`}
+        value={password}
+        onChange={onPasswordChange}
       />
 
       <Button
         fullwidth
         className='mb-4'
+        onClick={onSignupClick}
       >
         Crear Cuenta
       </Button>
