@@ -27,6 +27,9 @@ export const Header = (props: HeaderProps) => {
             <Link to={'/profile'}>
               My Account
             </Link>
+            <Link to={'/signin'}>
+              Cerrar Sesión
+            </Link>
           </>
         ) : (
           <>

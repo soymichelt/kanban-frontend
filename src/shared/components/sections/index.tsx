@@ -29,7 +29,7 @@ export const Sections = (props: SectionsProps) => {
     <DragDropContext onDragEnd={(result) => {
         onDragEnd(result);
     }}>
-      <div className='todo-sections-container'>
+      <div className='sections'>
         {sectionList && sectionList.map(section => {
           return (
             <Droppable

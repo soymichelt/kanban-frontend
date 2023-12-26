@@ -1,8 +1,8 @@
 main.page-component {
-  background-color: rgb(238, 242, 246);
   background-size: cover;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   box-sizing: border-box;
   padding: 1.625rem;
   display: flex;

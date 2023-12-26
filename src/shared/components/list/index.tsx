@@ -25,35 +25,37 @@ export const List = (props: ListProps) => {
   } = props;
 
   return (
-    <div className='todo-container'>
+    <div className={'todo-container'}>
       <section
         className={`todo ${loading ? 'todo-loading' : ''}`}
         ref={provided.innerRef}
         {...provided.droppableProps}
       >
-        <header className='todo-container-title'>
+        <header className={'todo__title'}>
           {sectionName}
         </header>
-        {(items && items.length > 0) && items.map((item, index) => {
-          return (
-            <Draggable
-              key={item.itemId}
-              draggableId={item.itemId}
-              index={index}
-            >
-              {(providedDrag) => (
-                <Item
-                  key={item.itemId}
-                  data={item}
-                  onComplete={onComplete}
-                  onEdit={onEdit}
-                  provided={providedDrag}
-                  completeId={completeId}
-                />
-              )}
-            </Draggable>
-          );
-        })}
+        <div className={'todo__list'}>
+          {(items && items.length > 0) && items.map((item, index) => {
+            return (
+              <Draggable
+                key={item.itemId}
+                draggableId={item.itemId}
+                index={index}
+              >
+                {(providedDrag) => (
+                  <Item
+                    key={item.itemId}
+                    data={item}
+                    onComplete={onComplete}
+                    onEdit={onEdit}
+                    provided={providedDrag}
+                    completeId={completeId}
+                  />
+                )}
+              </Draggable>
+            );
+          })}
+        </div>
 
         {provided.placeholder}
       </section>

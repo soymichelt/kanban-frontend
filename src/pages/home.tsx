@@ -8,7 +8,7 @@ export const Home = () => {
     <>
       <Header />
       <Page>
-        <Typography component='h4'>
+        <Typography component='h4' className='mb-4'>
           Tasks Board
         </Typography>
 

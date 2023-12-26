@@ -31,7 +31,7 @@ export type GlobalStateSchema = {
 
 export const initialGlobalState: GlobalStateSchema = {
   auth: {
-    isLogged: false,
+    isLogged: true,
   },
   setAuth: () => { },
   formEdit: {

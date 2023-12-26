@@ -7,17 +7,26 @@ import './index.styles.css';
 import { Typography } from '../../../shared/components/typography';
 
 export type SigninProps = {
-  title?: string;
+  className?: string | undefined;
+  onUsernameChange?: React.ChangeEventHandler<HTMLInputElement>;
+  username?: string;
+  onPasswordChange?: React.ChangeEventHandler<HTMLInputElement>;
+  password?: string | undefined;
+  onSigninClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export const Signin = (props: SigninProps) => {
   const {
-    title = 'Iniciar sesion',
+    className,
+    onUsernameChange,
+    username,
+    onPasswordChange,
+    password,
+    onSigninClick,
   } = props;
-  console.log(title);
 
   return (
-    <Panel className='signin-panel'>
+    <Panel className={`signin-panel ${className}`}>
       <Logo
         className={`mt-4 center`}
         size='sm'
@@ -34,11 +43,15 @@ export const Signin = (props: SigninProps) => {
       <TextField
         label={`Usuario`}
         placeholder={`Nombre de usuario`}
+        value={username}
+        onChange={onUsernameChange}
       />
 
       <TextField
         label={`Contraseña`}
         placeholder={`Contraseña`}
+        value={password}
+        onChange={onPasswordChange}
       />
 
       <Link to='/' className={`mb-4`}>
@@ -48,6 +61,7 @@ export const Signin = (props: SigninProps) => {
       <Button
         fullwidth
         className='mb-4'
+        onClick={onSigninClick}
       >
         Iniciar Sesión
       </Button>
@@ -57,7 +71,7 @@ export const Signin = (props: SigninProps) => {
         className='mb-4'
         variant='secondary'
       >
-        Regístrate
+        ¿Aún no tienes cuenta? Regístrate
       </Button>
     </Panel>
   );

@@ -1,6 +1,6 @@
 import { API_URL, API_HOST_HEADER } from './../config';
 
-const USER_API_URL = `${API_URL}/helloWorld/users`;
+const USER_API_URL = `${API_URL}/account/users`;
 
 export type UserModel = {
   userId: string;

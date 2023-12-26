@@ -6,7 +6,7 @@ export type TaskModel = {
   taskId: string;
   description: string;
   state: number;
-  author: string;
+  assignedTo: string;
   userId: string;
 };
 

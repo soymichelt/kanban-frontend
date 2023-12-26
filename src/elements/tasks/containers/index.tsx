@@ -3,9 +3,8 @@ import { DropResult } from 'react-beautiful-dnd';
 import { Tasks } from '../components';
 import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 import { TaskModel, all, updateState } from '../../../services/tasks';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SECTIONS_LIST } from '../../../shared/constants';
-import { globalState } from '../../../shared/states/global';
 
 export const TasksContainer = () => {
   const {
@@ -15,21 +14,15 @@ export const TasksContainer = () => {
     errorCatch,
   } = useDataProvider();
 
-  const {
-    refreshingTasks,
-    setRefreshingTasks,
-  } = useContext(globalState);
-
   useEffect(() => {
-    if (state.statusData === LOADING && refreshingTasks) {
+    if (state.statusData === LOADING) {
       all()
         .then(tasks => {
           setTasks(tasks);
-          setRefreshingTasks(false);
         })
         .catch(error => errorCatch(error));
     }
-  }, [state.isRefresh, refreshingTasks]);
+  }, [state.isRefresh]);
 
   const { data } = state || [];
 
@@ -68,7 +61,7 @@ export const TasksContainer = () => {
         itemId: item.taskId,
         itemState: item.state,
         itemDescription: item.description,
-        itemCreator: item.author,
+        itemCreator: item.assignedTo,
       }))}
       loading={false}
       onEdit={(item) => { console.log(item)}}

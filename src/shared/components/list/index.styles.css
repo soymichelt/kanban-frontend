@@ -1,9 +1,49 @@
-.todo {
-  min-width: 100%;
-  min-height: 500px;
+.todo-container {
   height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.todo {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   transition: .5s;
+
+  background-color: rgb(238, 242, 246);
+  border-radius: 1rem;
 }
 .todo.todo-loading {
   opacity: .50;
+}
+
+.todo__title {
+  font-size: 1rem;
+  text-align: center;
+  padding-block: 1.5rem;
+  color: #172b4d;
+  font-weight: 600;
+}
+
+.todo__list {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.todo__list::-webkit-scrollbar {
+  width: 3px;
+}
+.todo__list::-webkit-scrollbar-track {
+  -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+.todo__list::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  outline-width: 0;
 }
