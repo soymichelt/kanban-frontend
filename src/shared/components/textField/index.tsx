@@ -7,6 +7,7 @@ export type TextFieldProps = {
   onChange?: React.ChangeEventHandler<HTMLInputElement> | React.ChangeEventHandler<HTMLTextAreaElement>;
   component?: 'input' | 'textarea';
   type?: 'text' | 'password';
+  disabled?: boolean;
 };
 
 export const TextField = (props: TextFieldProps) => {
@@ -17,9 +18,10 @@ export const TextField = (props: TextFieldProps) => {
     onChange,
     component = 'input',
     type = 'text',
+    disabled = false,
   } = props;
   return (
-    <div className={`text-field`}>
+    <div className={`text-field ${disabled ? 'text-field--disabled' : ''}`}>
       <label>{label}</label>
       {component === 'input' ? (
         <input
@@ -27,12 +29,14 @@ export const TextField = (props: TextFieldProps) => {
           placeholder={placeholder ?? label}
           onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
           value={value}
+          disabled={disabled}
         />
       ) : (
         <textarea
           placeholder={placeholder ?? label}
           onChange={onChange as React.ChangeEventHandler<HTMLTextAreaElement>}
           value={value}
+          disabled={disabled}
         ></textarea>
       )}
     </div>

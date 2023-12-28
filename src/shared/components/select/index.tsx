@@ -7,6 +7,7 @@ export type SelectProps = {
   items?: NameWithIdProps[];
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  disabled?: boolean;
 };
 
 export const Select = (props: SelectProps) => {
@@ -16,12 +17,17 @@ export const Select = (props: SelectProps) => {
     items,
     value,
     onChange,
+    disabled = false,
   } = props;
 
   return (
-    <div className='select-field'>
+    <div className={`select-field ${disabled ? 'select-field--disabled' : ''}`}>
       <label>{label}</label>
-      <select defaultValue={value} onChange={onChange}>
+      <select
+        defaultValue={value}
+        onChange={onChange}
+        disabled={disabled}
+      >
         {placeholder && (
           <option>{placeholder}</option>
         )}

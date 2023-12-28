@@ -5,6 +5,7 @@
   padding-inline: 12px;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color, color, border-bottom-color .5s ease;
 }
 .button.button--primary {
   color: #fff;
@@ -19,4 +20,12 @@
 .button.button--fullwidth {
   width: 100%;
   flex: 1;
+}
+
+.button.button--disabled {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+}
+.button.button--primary.button--disabled {
+  border-bottom-color: rgba(0, 0, 0, 0.12);
 }

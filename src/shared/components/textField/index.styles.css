@@ -34,3 +34,7 @@
 {
   border: 1px solid rgba(23, 43, 77, .7);
 }
+
+.text-field.text-field--disabled input, .text-field.text-field--disabled textarea {
+  background-color: #f0f0f0;
+}
