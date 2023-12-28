@@ -7,10 +7,12 @@ export const useField = (defaultValue?: string) => {
       setValue(e.currentTarget.value);
     };
     const reset = () => setValue(defaultValue);
+    const isEmpty = () => !value;
 
     return {
         value,
         onChange,
         reset,
+        isEmpty,
     };
 };
