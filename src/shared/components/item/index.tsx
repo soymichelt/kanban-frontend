@@ -31,7 +31,15 @@ export const Item = (props: ItemProps) => {
       {...provided.dragHandleProps}
     >
       <div className='todo-item-contenido'>
-        <h2>{data.itemCreator}</h2>
+        <h2>
+          <span className='image'>
+            {data.itemCreator
+              ? data.itemCreator.charAt(0)
+              : 'a'
+            }
+          </span>
+          {data.itemCreator}
+        </h2>
         <p>{data.itemDescription}</p>
       </div>
       <div className='todo-item-actions'>
