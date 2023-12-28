@@ -4,12 +4,15 @@ import './index.styles.css';
 type HeaderProps = {
   isLogged?: boolean;
   onCreate?: () => void;
+  onSignout?: () => void;
 };
 
 export const Header = (props: HeaderProps) => {
   const {
     isLogged = false,
     onCreate,
+    onSignout,
+
   } = props;
 
   return (
@@ -24,19 +27,19 @@ export const Header = (props: HeaderProps) => {
             <button className='btn-primary' onClick={onCreate}>
               Crear Tarea
             </button>
-            <Link to={'/profile'}>
+            <Link className='menu-item' to={'/profile'}>
               My Account
             </Link>
-            <Link to={'/signin'}>
+            <button className='menu-item' onClick={onSignout}>
               Cerrar Sesión
-            </Link>
+            </button>
           </>
         ) : (
           <>
-            <Link to={'/signin'}>
+            <Link className='menu-item' to={'/signin'}>
               Iniciar Sesión
             </Link>
-            <Link to={'/signup'}>
+            <Link className='menu-item' to={'/signup'}>
               Regístrate
             </Link>
           </>
