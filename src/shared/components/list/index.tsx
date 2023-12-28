@@ -32,7 +32,10 @@ export const List = (props: ListProps) => {
         {...provided.droppableProps}
       >
         <header className={'todo__title'}>
-          {sectionName}
+          <span>{sectionName}</span>
+          <span className={'todo__title-badge'}>
+            {items?.length || 0}
+          </span>
         </header>
         <div className={'todo__list'}>
           {(items && items.length > 0) && items.map((item, index) => {

@@ -15,7 +15,7 @@
   flex-direction: column;
   transition: .5s;
 
-  background-color: rgb(238, 242, 246);
+  background-color: #f9faff;
   border-radius: 1rem;
 }
 .todo.todo-loading {
@@ -23,11 +23,28 @@
 }
 
 .todo__title {
+  display: flex;
+  align-items: center;
   font-size: 1rem;
-  text-align: center;
-  padding-block: 1.5rem;
+  line-height: 24px;
+  text-align: left;
+  padding: 1.5rem 1rem;
   color: #172b4d;
   font-weight: 600;
+}
+.todo__title-badge {
+  font-size: 14px;
+  padding: 0 12px;
+  border-radius: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  line-height: 1;
+  color: rgb(47, 114, 222);
+  background-color: rgb(47, 114, 222, .1);
+  box-sizing: border-box;
+  margin-left: .5rem;
 }
 
 .todo__list {
