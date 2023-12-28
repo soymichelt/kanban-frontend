@@ -1,4 +1,4 @@
-import { API_URL, API_HOST_HEADER } from './../config';
+import { API_URL, API_HOST_HEADER, getAuthHeader } from './../config';
 
 const TASK_API_URL = `${API_URL}/tasks`;
 
@@ -16,6 +16,7 @@ export const all = async (): Promise<TaskModel[]> => {
       method: 'GET',
       headers: {
         'Host': API_HOST_HEADER,
+        'Authorization': getAuthHeader() as string,
       },
       redirect: 'follow',
     })
@@ -33,6 +34,7 @@ export const create = async (task: Omit<TaskModel, 'taskId' | 'author'>): Promis
       method: 'POST',
       headers: {
         'Host': API_HOST_HEADER,
+        'Authorization': getAuthHeader() as string,
       },
       redirect: 'follow',
       body: JSON.stringify(task),
@@ -51,6 +53,7 @@ export const updateState = async (taskId: string, state: number): Promise<TaskMo
       method: 'PATCH',
       headers: {
         'Host': API_HOST_HEADER,
+        'Authorization': getAuthHeader() as string,
       },
       body: JSON.stringify({ state }),
     })
