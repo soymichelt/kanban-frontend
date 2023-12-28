@@ -3,6 +3,7 @@ import { globalState } from '../../../shared/states/global';
 import { TaskCreateForm } from '../components';
 import { create } from '../../../services/tasks';
 import { useField } from '../../../shared/hooks/useField';
+import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 
 export const TaskCreateFormContainer = () => {
   const {
@@ -15,19 +16,35 @@ export const TaskCreateFormContainer = () => {
   const stateField = useField('');
   const userIdField = useField('');
 
+  const { state, ...createTaskAction } = useDataProvider(false);
+
   const handleCloseModal = () => {
     setFormCreate({ isOpen: false });
     setRefreshingTasks(true);
   };
 
   const handleAcceptModal = () => {
+    if (!descriptionField.value?.trim() || !stateField.value?.trim() || !userIdField.value?.trim()) {
+      return;
+    }
+
+    createTaskAction.loading();
     create({
       description: descriptionField.value as string,
       state: parseInt(stateField.value as string),
       userId: userIdField.value as string,
     })
-      .then(() => setFormCreate({ isOpen: false }))
-      .catch(error => console.log(error));
+      .then(() => {
+        descriptionField.reset();
+        stateField.reset();
+        userIdField.reset();
+        createTaskAction.success();
+        setFormCreate({ isOpen: false });
+      })
+      .catch(error => {
+        createTaskAction.catch(error);
+        console.log(error);
+      });
   };
 
   return (
@@ -41,6 +58,7 @@ export const TaskCreateFormContainer = () => {
       onStateChange={stateField.onChange}
       userId={userIdField.value}
       onUserChange={userIdField.onChange}
+      isLoading={state.statusData === LOADING}
     />
   );
 };

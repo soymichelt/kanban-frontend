@@ -14,6 +14,7 @@ export type TaskCreateFormProps = {
   state?: number | undefined;
   onUserChange: React.ChangeEventHandler<HTMLSelectElement>;
   userId?: string | undefined;
+  isLoading?: boolean;
 };
 
 export const TaskCreateForm = (props: TaskCreateFormProps) => {
@@ -27,6 +28,7 @@ export const TaskCreateForm = (props: TaskCreateFormProps) => {
     state,
     onUserChange,
     userId,
+    isLoading = false,
   } = props;
 
   return (
@@ -43,6 +45,7 @@ export const TaskCreateForm = (props: TaskCreateFormProps) => {
             value={description}
             onChange={onDescriptionChange}
             component='textarea'
+            disabled={isLoading}
           />
 
           <Select
@@ -54,11 +57,13 @@ export const TaskCreateForm = (props: TaskCreateFormProps) => {
             }))}
             value={state?.toString()}
             onChange={onStateChange}
+            disabled={isLoading}
           />
 
           <UserSelectContainer
             value={userId}
             onChange={onUserChange}
+            disabled={isLoading}
           />
         </Modal>
       )}
