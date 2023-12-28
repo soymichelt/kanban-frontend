@@ -3,26 +3,32 @@ import { DropResult } from 'react-beautiful-dnd';
 import { Tasks } from '../components';
 import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 import { TaskModel, all, updateState } from '../../../services/tasks';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SECTIONS_LIST } from '../../../shared/constants';
+import { globalState } from '../../../shared/states/global';
 
 export const TasksContainer = () => {
-  const {
-    state,
-    loading: refreshTasks,
-    success: setTasks,
-    catch: errorCatch,
-  } = useDataProvider();
+  const { refreshingTasks, setRefreshingTasks } = useContext(globalState);
+  const { state, ...tasksAction } = useDataProvider();
+
+  const getTasks = () => {
+    all()
+      .then(tasks => tasksAction.success(tasks))
+      .catch(error => tasksAction.catch(error));
+  };
 
   useEffect(() => {
     if (state.statusData === LOADING) {
-      all()
-        .then(tasks => {
-          setTasks(tasks);
-        })
-        .catch(error => errorCatch(error));
+      getTasks();
     }
   }, [state.isRefresh]);
+
+  useEffect(() => {
+    if (refreshingTasks) {
+      getTasks();
+      setRefreshingTasks(false);
+    }
+  }, [refreshingTasks]);
 
   const { data } = state || [];
 
@@ -31,7 +37,7 @@ export const TasksContainer = () => {
     setCompleteId(itemId);
     updateState(itemId, 4)
       .then(() => {
-        refreshTasks();
+        tasksAction.loading();
       })
       .finally(() => setCompleteId(null));
   };
@@ -42,7 +48,7 @@ export const TasksContainer = () => {
     updateState(result.draggableId, Number(result.destination.droppableId))
       .catch(error => {
         console.log('Error >>> ', error);
-        refreshTasks();
+        tasksAction.loading();
       });
 
     const newTaskItems = data?.map((task: TaskModel) => {
@@ -51,7 +57,7 @@ export const TasksContainer = () => {
       }
       return task;
     });
-    setTasks(newTaskItems);
+    tasksAction.success(newTaskItems);
   };
 
   return (

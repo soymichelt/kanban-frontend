@@ -20,7 +20,6 @@ export const TaskCreateFormContainer = () => {
 
   const handleCloseModal = () => {
     setFormCreate({ isOpen: false });
-    setRefreshingTasks(true);
   };
 
   const handleAcceptModal = () => {
@@ -35,6 +34,7 @@ export const TaskCreateFormContainer = () => {
       userId: userIdField.value as string,
     })
       .then(() => {
+        setRefreshingTasks(true);
         descriptionField.reset();
         stateField.reset();
         userIdField.reset();
