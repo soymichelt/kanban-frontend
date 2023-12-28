@@ -16,6 +16,8 @@
 
 .todo-item h2 {
   font-size: 1rem;
+  display: flex;
+  align-items: center;
 }
 .todo-item h2 .image {
   display: inline-flex;

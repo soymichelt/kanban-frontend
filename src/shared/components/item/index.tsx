@@ -3,6 +3,7 @@ import CompleteIcon from './../../../assets/complete-icon-blue.svg';
 import EditIcon from './../../../assets/edit-icon-blue.svg';
 import './index.styles.css';
 import { ItemType } from '../../definitions/item';
+import PersonIcon from '@mui/icons-material/Person';
 
 type ItemProps = {
   provided: DraggableProvided;
@@ -35,10 +36,10 @@ export const Item = (props: ItemProps) => {
           <span className='image'>
             {data.itemCreator
               ? data.itemCreator.charAt(0)
-              : 'a'
+              : <PersonIcon />
             }
           </span>
-          {data.itemCreator}
+          {data.itemCreator || 'Unknown'}
         </h2>
         <p>{data.itemDescription}</p>
       </div>
