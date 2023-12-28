@@ -38,6 +38,7 @@ export const TaskCreateForm = (props: TaskCreateFormProps) => {
           title={`Creando una tarea...`}
           onClose={onCloseModal}
           onAccept={onAcceptModal}
+          acceptButtonDisabled={isLoading}
         >
           <TextField
             label={`Descripción`}

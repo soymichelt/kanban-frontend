@@ -6,8 +6,10 @@ import { Button } from '../button';
 export type ModalProps = {
   title: string;
   acceptButtonText?: string;
+  acceptButtonDisabled?: boolean;
   onAccept?: () => void;
   cancelButtonText?: string;
+  cancelButtonDisabled?: boolean;
   onClose?: React.MouseEventHandler<HTMLElement>;
   children: React.ReactElement | Array<React.ReactElement> | string | number;
 };
@@ -16,8 +18,10 @@ export const Modal = (props: ModalProps) => {
   const {
     title,
     acceptButtonText,
+    acceptButtonDisabled = false,
     onAccept,
     cancelButtonText,
+    cancelButtonDisabled = false,
     onClose,
     children,
   } = props;
@@ -35,10 +39,10 @@ export const Modal = (props: ModalProps) => {
           {children}
         </div>
         <footer className={`modal__footer`}>
-          <Button onClick={onClose} variant='secondary'>
+          <Button onClick={onClose} variant='secondary' disabled={cancelButtonDisabled}>
             {cancelButtonText ? cancelButtonText : 'Cancelar'}
           </Button>
-          <Button onClick={onAccept}>
+          <Button onClick={onAccept} disabled={acceptButtonDisabled}>
             {acceptButtonText ? acceptButtonText : 'Aceptar'}
           </Button>
         </footer>
