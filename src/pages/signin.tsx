@@ -1,9 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Header } from '../elements/header';
 import { SigninContainer } from '../elements/signin/containers';
 import { Page } from '../shared/components/page';
 import Background from '../assets/background.png';
+import { useNavigate } from 'react-router-dom';
+import { globalState } from '../shared/states/global';
+import { useContext, useEffect } from 'react';
 
 export const Signin = () => {
+  const navigate = useNavigate();
+  const { auth } = useContext(globalState);
+
+  useEffect(() => {
+    if (auth.isLogged) {
+      navigate('/');
+    }
+  }, [auth.isLogged]);
+
   return (
     <>
       <Header />
