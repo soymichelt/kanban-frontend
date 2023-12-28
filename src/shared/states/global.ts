@@ -3,8 +3,11 @@ import { createContext } from 'react';
 export type AuthStateProps = {
   isLogged: boolean;
   myAccount?: {
+    userId: string;
     username: string;
     email: string;
+    token: string;
+    phone?: string;
     image?: string;
   };
 };
