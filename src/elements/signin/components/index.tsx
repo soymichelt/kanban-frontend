@@ -13,6 +13,7 @@ export type SigninProps = {
   onPasswordChange?: React.ChangeEventHandler<HTMLInputElement>;
   password?: string | undefined;
   onSigninClick?: React.MouseEventHandler<HTMLButtonElement>;
+  isLoading?: boolean;
 };
 
 export const Signin = (props: SigninProps) => {
@@ -23,6 +24,7 @@ export const Signin = (props: SigninProps) => {
     onPasswordChange,
     password,
     onSigninClick,
+    isLoading = false,
   } = props;
 
   return (
@@ -45,6 +47,7 @@ export const Signin = (props: SigninProps) => {
         placeholder={`Nombre de usuario`}
         value={username}
         onChange={onUsernameChange}
+        disabled={isLoading}
       />
 
       <TextField
@@ -53,9 +56,10 @@ export const Signin = (props: SigninProps) => {
         value={password}
         onChange={onPasswordChange}
         type={'password'}
+        disabled={isLoading}
       />
 
-      <Link to='/' className={`mb-4`}>
+      <Link to='/signin' className={`mb-4`}>
         ¿Has olvidado tu Contraseña?
       </Link>
 
@@ -63,6 +67,7 @@ export const Signin = (props: SigninProps) => {
         fullwidth
         className='mb-4'
         onClick={onSigninClick}
+        disabled={isLoading}
       >
         Iniciar Sesión
       </Button>

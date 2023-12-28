@@ -16,6 +16,7 @@ export type SignupProps = {
   onPasswordChange?: React.ChangeEventHandler<HTMLInputElement>;
   password?: string;
   onSignupClick?: React.MouseEventHandler<HTMLButtonElement>;
+  isLoading?: boolean;
 };
 
 export const Signup = (props: SignupProps) => {
@@ -30,6 +31,7 @@ export const Signup = (props: SignupProps) => {
     onPasswordChange,
     password,
     onSignupClick,
+    isLoading = false,
   } = props;
 
   return (
@@ -52,6 +54,7 @@ export const Signup = (props: SignupProps) => {
         placeholder={`Correo electrónico`}
         value={email}
         onChange={onEmailChange}
+        disabled={isLoading}
       />
 
       <TextField
@@ -59,6 +62,7 @@ export const Signup = (props: SignupProps) => {
         placeholder={`Número telefónico`}
         value={phone}
         onChange={onPhoneChange}
+        disabled={isLoading}
       />
 
       <TextField
@@ -66,6 +70,7 @@ export const Signup = (props: SignupProps) => {
         placeholder={`Nombre de usuario`}
         value={username}
         onChange={onUsernameChange}
+        disabled={isLoading}
       />
 
       <TextField
@@ -74,12 +79,14 @@ export const Signup = (props: SignupProps) => {
         value={password}
         onChange={onPasswordChange}
         type={'password'}
+        disabled={isLoading}
       />
 
       <Button
         fullwidth
         className='mb-4'
         onClick={onSignupClick}
+        disabled={isLoading}
       >
         Crear Cuenta
       </Button>

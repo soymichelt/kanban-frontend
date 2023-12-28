@@ -4,6 +4,7 @@ import { useField } from '../../../shared/hooks/useField';
 import { Signin } from '../components';
 import { globalState } from '../../../shared/states/global';
 import { useNavigate } from 'react-router-dom';
+import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 
 export const SigninContainer = () => {
   const { setAuth } = useContext(globalState);
@@ -11,21 +12,27 @@ export const SigninContainer = () => {
 
   const usernameField = useField('');
   const passwordField = useField('');
+  const { state, ...signinAction } = useDataProvider(false);
 
   const handleSigninClick = () => {
     if (usernameField.isEmpty() || passwordField.isEmpty()) {
       return;
     }
 
+    signinAction.loading();
     signin(usernameField.value as string, passwordField.value as string)
       .then(data => {
+        signinAction.success();
         setAuth({
           isLogged: true,
           myAccount: data
         });
         navigate('/');
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        signinAction.catch(error);
+        console.log(error);
+      });
   };
 
   return (
@@ -35,6 +42,7 @@ export const SigninContainer = () => {
       password={passwordField.value}
       onPasswordChange={passwordField.onChange}
       onSigninClick={handleSigninClick}
+      isLoading={state.statusData === LOADING}
     />
   );
 };
