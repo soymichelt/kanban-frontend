@@ -7,11 +7,12 @@ import { UserModel, all } from '../../../services/users';
 export type UserSelectContainerProps = {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  disabled?: boolean;
 };
 
 export const UserSelectContainer = (props: UserSelectContainerProps) => {
-  const { value, onChange } = props;
-  const { state, success, errorCatch } = useDataProvider();
+  const { value, onChange, disabled } = props;
+  const { state, success, catch: errorCatch } = useDataProvider();
 
   useEffect(() => {
     if (state.statusData === LOADING) {
@@ -29,6 +30,7 @@ export const UserSelectContainer = (props: UserSelectContainerProps) => {
       }))}
       value={value}
       onChange={onChange}
+      disabled={disabled}
     />
   );
 };

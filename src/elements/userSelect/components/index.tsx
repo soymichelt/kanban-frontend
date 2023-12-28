@@ -5,6 +5,7 @@ export type UserSelectProps = {
   items?: NameWithIdProps[];
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  disabled?: boolean;
 };
 
 export const UserSelect = (props: UserSelectProps) => {
@@ -12,6 +13,7 @@ export const UserSelect = (props: UserSelectProps) => {
     items = [],
     value,
     onChange,
+    disabled = false,
   } = props;
 
   return (
@@ -21,6 +23,7 @@ export const UserSelect = (props: UserSelectProps) => {
       items={items}
       value={value}
       onChange={onChange}
+      disabled={disabled}
     />
   );
 };
