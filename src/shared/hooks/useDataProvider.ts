@@ -2,13 +2,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useReducer } from 'react';
 
+export const INITIAL = 'initial';
 export const LOADING = 'loading';
 export const SUCCESS = 'success';
 export const ERROR = 'error';
 
 type StateProps = {
   isRefresh: boolean;
-  statusData: 'loading' | 'success' | 'error';
+  statusData: 'initial' | 'loading' | 'success' | 'error';
   data?: any;
   error?: Error | string;
 };
@@ -20,6 +21,11 @@ type ActionProps = {
 
 const reducer = (state: StateProps, action: ActionProps): StateProps => {
   switch (action.type) {
+    case INITIAL: return {
+      ...state,
+      statusData: INITIAL,
+      isRefresh: false,
+    };
     case LOADING: return {
       ...state,
       statusData: LOADING,
@@ -41,10 +47,10 @@ const reducer = (state: StateProps, action: ActionProps): StateProps => {
   }
 };
 
-export const useDataProvider = () => {
+export const useDataProvider = (startInLoading: boolean = true) => {
   const initialState: StateProps = {
-    statusData: LOADING,
-    isRefresh: true,
+    statusData: startInLoading ? LOADING : INITIAL,
+    isRefresh: startInLoading,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -55,11 +61,11 @@ export const useDataProvider = () => {
       type: LOADING,
       payload: { },
     }),
-    success: (data: any) => dispatch({
+    success: (data?: any) => dispatch({
       type: SUCCESS,
       payload: { data },
     }),
-    errorCatch: (error: Error) => dispatch({
+    catch: (error: Error) => dispatch({
       type: ERROR,
       payload: { error },
     })

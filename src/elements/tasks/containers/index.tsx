@@ -11,7 +11,7 @@ export const TasksContainer = () => {
     state,
     loading: refreshTasks,
     success: setTasks,
-    errorCatch,
+    catch: errorCatch,
   } = useDataProvider();
 
   useEffect(() => {
