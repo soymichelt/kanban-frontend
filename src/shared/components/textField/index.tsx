@@ -6,6 +6,7 @@ export type TextFieldProps = {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | React.ChangeEventHandler<HTMLTextAreaElement>;
   component?: 'input' | 'textarea';
+  type?: 'text' | 'password';
 };
 
 export const TextField = (props: TextFieldProps) => {
@@ -14,13 +15,15 @@ export const TextField = (props: TextFieldProps) => {
     placeholder,
     value,
     onChange,
-    component = 'input'
+    component = 'input',
+    type = 'text',
   } = props;
   return (
     <div className={`text-field`}>
       <label>{label}</label>
       {component === 'input' ? (
         <input
+          type={type}
           placeholder={placeholder ?? label}
           onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
           value={value}

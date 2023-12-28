@@ -52,6 +52,7 @@ export const Signin = (props: SigninProps) => {
         placeholder={`Contraseña`}
         value={password}
         onChange={onPasswordChange}
+        type={'password'}
       />
 
       <Link to='/' className={`mb-4`}>

@@ -73,6 +73,7 @@ export const Signup = (props: SignupProps) => {
         placeholder={`Contraseña`}
         value={password}
         onChange={onPasswordChange}
+        type={'password'}
       />
 
       <Button
