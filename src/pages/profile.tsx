@@ -23,7 +23,7 @@ export const Profile = () => {
       <Page>
         <IsAuthenticated>
           <Typography component='h4' className='mb-4'>
-            Tasks Board
+            Personal Profile
           </Typography>
         </IsAuthenticated>
       </Page>
