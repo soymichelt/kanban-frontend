@@ -23,7 +23,17 @@ export const TaskCreateFormContainer = () => {
   };
 
   const handleAcceptModal = () => {
-    if (!descriptionField.value?.trim() || !stateField.value?.trim() || !userIdField.value?.trim()) {
+    if (descriptionField.isEmpty() || stateField.isEmpty() || userIdField.isEmpty()) {
+      if (descriptionField.isEmpty()) {
+        descriptionField.setError('La descripción es requerida');
+      }
+      if (stateField.isEmpty()) {
+        stateField.setError('Seleccione el estado inicial de esta tarea');
+      }
+      if (userIdField.isEmpty()) {
+        userIdField.setError('Seleccione un usuario');
+      }
+
       return;
     }
 
@@ -53,10 +63,13 @@ export const TaskCreateFormContainer = () => {
       onCloseModal={handleCloseModal}
       onAcceptModal={handleAcceptModal}
       description={descriptionField.value}
+      descriptionErrorMessage={descriptionField.error}
       onDescriptionChange={descriptionField.onChange}
       state={parseInt(stateField.value as string)}
+      stateErrorMessage={stateField.error}
       onStateChange={stateField.onChange}
       userId={userIdField.value}
+      userIdErrorMessage={userIdField.error}
       onUserChange={userIdField.onChange}
       isLoading={state.statusData === LOADING}
     />

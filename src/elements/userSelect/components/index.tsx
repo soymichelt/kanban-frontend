@@ -6,6 +6,7 @@ export type UserSelectProps = {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   disabled?: boolean;
+  errorMessage?: string;
 };
 
 export const UserSelect = (props: UserSelectProps) => {
@@ -14,6 +15,7 @@ export const UserSelect = (props: UserSelectProps) => {
     value,
     onChange,
     disabled = false,
+    errorMessage,
   } = props;
 
   return (
@@ -24,6 +26,7 @@ export const UserSelect = (props: UserSelectProps) => {
       value={value}
       onChange={onChange}
       disabled={disabled}
+      errorMessage={errorMessage}
     />
   );
 };

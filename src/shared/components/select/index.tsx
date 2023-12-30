@@ -8,6 +8,8 @@ export type SelectProps = {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   disabled?: boolean;
+  error?: boolean;
+  errorMessage?: string;
 };
 
 export const Select = (props: SelectProps) => {
@@ -18,10 +20,12 @@ export const Select = (props: SelectProps) => {
     value,
     onChange,
     disabled = false,
+    error = false,
+    errorMessage,
   } = props;
 
   return (
-    <div className={`select-field ${disabled ? 'select-field--disabled' : ''}`}>
+    <div className={`select-field ${disabled ? 'select-field--disabled' : ''} ${error || errorMessage ? 'select-field--error' : ''}`}>
       <label>{label}</label>
       <select
         defaultValue={value}
@@ -38,6 +42,12 @@ export const Select = (props: SelectProps) => {
           </option>
         )}
       </select>
+
+      {errorMessage && (
+        <span className='select-field__error'>
+          {errorMessage}
+        </span>
+      )}
     </div>
   );
 };
