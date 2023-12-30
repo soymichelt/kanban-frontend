@@ -17,7 +17,17 @@ export const SignupContainer = () => {
   const { state, ...singupAction } = useDataProvider(false);
 
   const handleSignupClick = () => {
-    if (!emailField.value?.trim() || !usernameField.value?.trim() || !passwordField.value) {
+    if (emailField.isEmpty() || usernameField.isEmpty() || passwordField.isEmpty()) {
+      if (emailField.isEmpty()) {
+        emailField.setError('Email is required');
+      }
+      if (usernameField.isEmpty()) {
+        usernameField.setError('Username is required');
+      }
+      if (passwordField.isEmpty()) {
+        passwordField.setError('Password is required');
+      }
+
       return;
     }
 
@@ -45,12 +55,15 @@ export const SignupContainer = () => {
   return (
     <Signup
       email={emailField.value}
+      emailErrorMessage={emailField.error}
       onEmailChange={emailField.onChange}
       phone={phoneField.value}
       onPhoneChange={phoneField.onChange}
       username={usernameField.value}
+      usernameErrorMessage={usernameField.error}
       onUsernameChange={usernameField.onChange}
       password={passwordField.value}
+      passwordErrorMessage={passwordField.error}
       onPasswordChange={passwordField.onChange}
       onSignupClick={handleSignupClick}
       isLoading={state.statusData === LOADING}

@@ -9,12 +9,15 @@ export type SignupProps = {
   className?: string;
   onUsernameChange?: React.ChangeEventHandler<HTMLInputElement>;
   username?: string;
+  usernameErrorMessage?: string;
   onEmailChange?: React.ChangeEventHandler<HTMLInputElement>;
   email?: string;
+  emailErrorMessage?: string;
   onPhoneChange?: React.ChangeEventHandler<HTMLInputElement>;
   phone?: string;
   onPasswordChange?: React.ChangeEventHandler<HTMLInputElement>;
   password?: string;
+  passwordErrorMessage?: string;
   onSignupClick?: React.MouseEventHandler<HTMLButtonElement>;
   isLoading?: boolean;
 };
@@ -24,12 +27,15 @@ export const Signup = (props: SignupProps) => {
     className,
     onUsernameChange,
     username,
+    usernameErrorMessage,
     onEmailChange,
     email,
+    emailErrorMessage,
     onPhoneChange,
     phone,
     onPasswordChange,
     password,
+    passwordErrorMessage,
     onSignupClick,
     isLoading = false,
   } = props;
@@ -55,6 +61,7 @@ export const Signup = (props: SignupProps) => {
         value={email}
         onChange={onEmailChange}
         disabled={isLoading}
+        errorMessage={emailErrorMessage}
       />
 
       <TextField
@@ -71,6 +78,7 @@ export const Signup = (props: SignupProps) => {
         value={username}
         onChange={onUsernameChange}
         disabled={isLoading}
+        errorMessage={usernameErrorMessage}
       />
 
       <TextField
@@ -80,6 +88,7 @@ export const Signup = (props: SignupProps) => {
         onChange={onPasswordChange}
         type={'password'}
         disabled={isLoading}
+        errorMessage={passwordErrorMessage}
       />
 
       <Button
