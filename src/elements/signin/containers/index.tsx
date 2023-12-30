@@ -16,6 +16,13 @@ export const SigninContainer = () => {
 
   const handleSigninClick = () => {
     if (usernameField.isEmpty() || passwordField.isEmpty()) {
+      if (usernameField.isEmpty()) {
+        usernameField.setError('Username is required');
+      }
+      if (passwordField.isEmpty()) {
+        passwordField.setError('Password is required');
+      }
+
       return;
     }
 
@@ -38,8 +45,10 @@ export const SigninContainer = () => {
   return (
     <Signin
       username={usernameField.value}
+      usernameErrorMessage={usernameField.error}
       onUsernameChange={usernameField.onChange}
       password={passwordField.value}
+      passwordErrorMessage={passwordField.error}
       onPasswordChange={passwordField.onChange}
       onSigninClick={handleSigninClick}
       isLoading={state.statusData === LOADING}

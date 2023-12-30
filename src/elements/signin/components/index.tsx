@@ -10,8 +10,10 @@ export type SigninProps = {
   className?: string | undefined;
   onUsernameChange?: React.ChangeEventHandler<HTMLInputElement>;
   username?: string;
+  usernameErrorMessage?: string | undefined;
   onPasswordChange?: React.ChangeEventHandler<HTMLInputElement>;
   password?: string | undefined;
+  passwordErrorMessage?: string | undefined;
   onSigninClick?: React.MouseEventHandler<HTMLButtonElement>;
   isLoading?: boolean;
 };
@@ -21,8 +23,10 @@ export const Signin = (props: SigninProps) => {
     className,
     onUsernameChange,
     username,
+    usernameErrorMessage,
     onPasswordChange,
     password,
+    passwordErrorMessage,
     onSigninClick,
     isLoading = false,
   } = props;
@@ -48,6 +52,7 @@ export const Signin = (props: SigninProps) => {
         value={username}
         onChange={onUsernameChange}
         disabled={isLoading}
+        errorMessage={usernameErrorMessage}
       />
 
       <TextField
@@ -57,6 +62,7 @@ export const Signin = (props: SigninProps) => {
         onChange={onPasswordChange}
         type={'password'}
         disabled={isLoading}
+        errorMessage={passwordErrorMessage}
       />
 
       <Link to='/signin' className={`mb-4`}>
