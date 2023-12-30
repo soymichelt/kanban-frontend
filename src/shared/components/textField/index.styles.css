@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .text-field label {
@@ -37,4 +38,16 @@
 
 .text-field.text-field--disabled input, .text-field.text-field--disabled textarea {
   background-color: #f0f0f0;
+}
+
+.text-field.text-field--error input, .text-field.text-field--error textarea {
+  border-color: rgb(211, 47, 47);
+}
+.text-field .text-field__error {
+  display: inline-block;
+  position: absolute;
+  bottom: -14px;
+  color: rgb(211, 47, 47);
+  font-size: .625rem;
+  z-index: 999;
 }

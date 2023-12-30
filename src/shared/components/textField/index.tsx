@@ -8,6 +8,8 @@ export type TextFieldProps = {
   component?: 'input' | 'textarea';
   type?: 'text' | 'password';
   disabled?: boolean;
+  error?: boolean;
+  errorMessage?: string;
 };
 
 export const TextField = (props: TextFieldProps) => {
@@ -19,9 +21,12 @@ export const TextField = (props: TextFieldProps) => {
     component = 'input',
     type = 'text',
     disabled = false,
+    error = false,
+    errorMessage,
   } = props;
+
   return (
-    <div className={`text-field ${disabled ? 'text-field--disabled' : ''}`}>
+    <div className={`text-field ${disabled ? 'text-field--disabled' : ''} ${error || errorMessage ? 'text-field--error' : ''}`}>
       <label>{label}</label>
       {component === 'input' ? (
         <input
@@ -38,6 +43,12 @@ export const TextField = (props: TextFieldProps) => {
           value={value}
           disabled={disabled}
         ></textarea>
+      )}
+
+      {error || errorMessage && (
+        <span className='text-field__error'>
+          {errorMessage}
+        </span>
       )}
     </div>
   );
