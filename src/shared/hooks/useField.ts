@@ -1,18 +1,26 @@
 import { useState } from 'react';
 
+export type FieldStateProps = {
+  value: string | undefined;
+  error?: string | undefined;
+};
+
 export const useField = (defaultValue?: string) => {
-    const [value, setValue] = useState<string | undefined>(defaultValue);
+    const [fieldState, setFieldState] = useState<FieldStateProps>({ value: defaultValue });
 
     const onChange = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      setValue(e.currentTarget.value);
+      setFieldState({ value: e.currentTarget.value });
     };
-    const reset = () => setValue(defaultValue);
-    const isEmpty = () => !value;
+    const reset = () => setFieldState({ value: defaultValue });
+    const isEmpty = () => !fieldState.value;
+    const setError = (error: string) => setFieldState({ ...fieldState, error });
 
     return {
-        value,
+        value: fieldState.value,
+        error: fieldState.error,
         onChange,
         reset,
         isEmpty,
+        setError,
     };
 };
