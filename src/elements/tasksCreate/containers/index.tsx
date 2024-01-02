@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext } from 'react';
 import { globalState } from '../../../shared/states/global';
 import { TaskCreateForm } from '../components';
@@ -10,6 +11,7 @@ export const TaskCreateFormContainer = () => {
     formCreate,
     setFormCreate,
     setRefreshingTasks,
+    showNotification,
   } = useContext(globalState);
 
   const descriptionField = useField('');
@@ -49,10 +51,12 @@ export const TaskCreateFormContainer = () => {
         stateField.reset();
         userIdField.reset();
         createTaskAction.success();
+        showNotification('Task created 🍻', 'info');
         setFormCreate({ isOpen: false });
       })
-      .catch(error => {
+      .catch((error: any) => {
         createTaskAction.catch(error);
+        showNotification(error.message, 'error');
         console.log(error);
       });
   };

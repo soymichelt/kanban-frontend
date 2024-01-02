@@ -30,6 +30,7 @@ export type GlobalStateSchema = {
   setFormCreate: (form: FormTaskStateProps) => void;
   refreshingTasks: boolean;
   setRefreshingTasks: (isRefreshing: boolean) => void;
+  showNotification: (message: string, type: 'default' | 'info' | 'success' | 'warn' | 'error') => void;
 };
 
 export const initialGlobalState: GlobalStateSchema = {
@@ -47,6 +48,7 @@ export const initialGlobalState: GlobalStateSchema = {
   setFormCreate: () => { },
   refreshingTasks: true,
   setRefreshingTasks: () => { },
+  showNotification: () => { },
 };
 
 export const globalState = createContext<GlobalStateSchema>(initialGlobalState);
