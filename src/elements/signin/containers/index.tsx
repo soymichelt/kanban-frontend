@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 
 export const SigninContainer = () => {
-  const { setAuth } = useContext(globalState);
+  const { setAuth, showNotification } = useContext(globalState);
   const navigate = useNavigate();
 
   const usernameField = useField('');
@@ -35,9 +35,11 @@ export const SigninContainer = () => {
           myAccount: data
         });
         navigate('/');
+        showNotification('Welcome back! 😇', 'info');
       })
-      .catch(error => {
+      .catch((error: Error) => {
         signinAction.catch(error);
+        showNotification(error.message, 'error');
         console.log(error);
       });
   };

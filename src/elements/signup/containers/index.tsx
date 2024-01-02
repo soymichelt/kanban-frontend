@@ -7,7 +7,7 @@ import { globalState } from '../../../shared/states/global';
 import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 
 export const SignupContainer = () => {
-  const { setAuth } = useContext(globalState);
+  const { setAuth, showNotification } = useContext(globalState);
   const navigate = useNavigate();
 
   const emailField = useField('');
@@ -45,10 +45,12 @@ export const SignupContainer = () => {
           myAccount: data,
         });
         navigate('/');
+        showNotification('Welcome 🫶', 'info');
       })
-      .catch(error => {
+      .catch((error: Error) => {
         singupAction.catch(error);
         console.log(error);
+        showNotification(error.message, 'error');
       });
   };
 
