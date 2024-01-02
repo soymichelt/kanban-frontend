@@ -1,8 +1,8 @@
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { List } from '../list';
-import './index.styles.css';
 import { ItemType } from '../../definitions/item';
 import { SectionType } from '../../definitions/section';
+import './index.styles.css';
 
 export type SectionsProps = {
   sectionList: SectionType[];

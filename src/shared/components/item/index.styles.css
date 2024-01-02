@@ -1,4 +1,4 @@
-.todo-item {
+.item-element {
   background-color: #ffffff;
   border: 1px solid #e5e6e6;
   border-left: 4px solid #2F72DE;
@@ -14,12 +14,12 @@
   user-select: none;
 }
 
-.todo-item h2 {
+.item-element h2 {
   font-size: 1rem;
   display: flex;
   align-items: center;
 }
-.todo-item h2 .image {
+.item-element h2 .item-element__header-image {
   display: inline-flex;
   height: 30px;
   width: 30px;
@@ -34,51 +34,35 @@
   color: #fff;
 }
 
-
-.todo-item h2, .todo-item p {
+.item-element h2, .item-element p {
   margin: 0;
   transition: .3s;
 }
-.todo-item p {
+.item-element p {
+  font-size: 14px;
+  line-height: 22px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.todo-item.todo-completed {
+.item-element.item-element--completed {
   border-left: 4px solid #03CEA4;
 }
-.todo-item.todo-completed h2, .todo-item.todo-completed p {
+.item-element.item-element--completed h2, .item-element.item-element--completed p {
   text-decoration: line-through;
   color: #a8a9aa;
 }
-.todo-item .todo-item-actions {
+.item-element .item-element__actions {
   display: flex;
+  margin-top: 8px;
 }
-.todo-item .btn img {
+.item-element .btn img {
   width: 18px;
   height: 18px;
 }
 
-.todo-item.tarea-terminada h2, .todo-item.tarea-terminada p {
-  text-decoration: line-through;
-  opacity: .5;
-}
-.todo-item.tarea-terminada .btn {
-  opacity: .5;
-  pointer-events: none;
-}
-
-.todo-item p {
-  font-size: 14px;
-  line-height: 22px;
-}
-
-.todo-item-actions {
-  margin-top: 8px;
-}
-
-.todo-item .btn {
+.item-element .btn {
   height: 42px;
   min-width: 42px;
   box-sizing: border-box;
@@ -95,6 +79,18 @@
   cursor: pointer;
   transition: .3s;
 }
-.todo-item .btn:disabled {
+.item-element .btn:disabled {
   opacity: .6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .item-element {
+    background-color: rgb(18, 23, 47);
+    border: 1px solid rgb(10, 15, 35);
+    border-left: 4px solid #2F72DE;
+  }
+  .item-element .btn {
+    background-color: #0F1924;
+    color: #262EC9;
+  }
 }

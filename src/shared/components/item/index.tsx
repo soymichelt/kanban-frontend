@@ -26,14 +26,14 @@ export const Item = (props: ItemProps) => {
 
   return (
     <article
-      className={`todo-item ${data.itemState === 4 ? 'todo-completed' : ''}`}
+      className={`item-element ${data.itemState === 4 ? 'item-element--completed' : ''}`}
       ref={provided.innerRef}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
     >
-      <div className='todo-item-contenido'>
-        <h2>
-          <span className='image'>
+      <div className='item-element__content'>
+        <h2 className='item-element__header'>
+          <span className='item-element__header-image'>
             {data.itemCreator
               ? data.itemCreator.charAt(0)
               : <PersonIcon />
@@ -43,7 +43,8 @@ export const Item = (props: ItemProps) => {
         </h2>
         <p>{data.itemDescription}</p>
       </div>
-      <div className='todo-item-actions'>
+
+      <div className='item-element__actions'>
           {data.itemState !== 4 && (
             <button
               className='btn'

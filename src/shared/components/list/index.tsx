@@ -25,19 +25,19 @@ export const List = (props: ListProps) => {
   } = props;
 
   return (
-    <div className={'todo-container'}>
+    <div className={'list'}>
       <section
-        className={`todo ${loading ? 'todo-loading' : ''}`}
+        className={`list__section ${loading ? 'list__section--loading' : ''}`}
         ref={provided.innerRef}
         {...provided.droppableProps}
       >
-        <header className={'todo__title'}>
+        <header className={'list__header'}>
           <span>{sectionName}</span>
-          <span className={'todo__title-badge'}>
+          <span className={'list__header-badge'}>
             {items?.length || 0}
           </span>
         </header>
-        <div className={'todo__list'}>
+        <div className={'list__items-container'}>
           {(items && items.length > 0) && items.map((item, index) => {
             return (
               <Draggable

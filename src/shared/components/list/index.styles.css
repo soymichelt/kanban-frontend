@@ -1,4 +1,4 @@
-.todo-container {
+.list {
   height: 100%;
   position: relative;
   display: flex;
@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.todo {
+.list__section {
   flex: 1;
   width: 100%;
   height: 100%;
@@ -18,11 +18,11 @@
   background-color: #f9faff;
   border-radius: 1rem;
 }
-.todo.todo-loading {
+.list__section.list__section--loading {
   opacity: .50;
 }
 
-.todo__title {
+.list__header {
   display: flex;
   align-items: center;
   font-size: 1rem;
@@ -32,7 +32,7 @@
   color: #172b4d;
   font-weight: 600;
 }
-.todo__title-badge {
+.list__header-badge {
   font-size: 14px;
   padding: 0 12px;
   border-radius: 12px;
@@ -47,20 +47,26 @@
   margin-left: .5rem;
 }
 
-.todo__list {
+.list__items-container {
   flex: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
-.todo__list::-webkit-scrollbar {
+.list__items-container::-webkit-scrollbar {
   width: 3px;
 }
-.todo__list::-webkit-scrollbar-track {
+.list__items-container::-webkit-scrollbar-track {
   -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.3);
 }
-.todo__list::-webkit-scrollbar-thumb {
+.list__items-container::-webkit-scrollbar-thumb {
   background-color: transparent;
   outline-width: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .list__section {
+    background-color: rgb(3, 6, 20);
+  }
 }
