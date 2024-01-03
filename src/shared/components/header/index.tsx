@@ -73,7 +73,7 @@ export const Header = (props: HeaderProps) => {
       <aside className={`sidebar ${sidebarIsOpen ? 'is-open' : ''}`}>
         <header>
           <Link to='/'>
-            <Logo />
+            <Logo size='sm' />
           </Link>
         </header>
         <nav>

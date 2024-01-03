@@ -51,3 +51,19 @@
   font-size: .625rem;
   z-index: 999;
 }
+
+/* themes */
+@media (prefers-color-scheme: dark) {
+  .text-field label {
+    color: rgb(96, 109, 136);
+  }
+
+  .text-field input, .text-field textarea {
+    background-color: rgb(10, 15, 35);
+    color: rgb(213, 217, 233);
+  }
+
+  .text-field.text-field--disabled input, .text-field.text-field--disabled textarea {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}
