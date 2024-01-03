@@ -17,3 +17,10 @@
 .logo.logo--lg {
   font-size: 1.625rem;
 }
+
+/* themes */
+@media (prefers-color-scheme: dark) {
+  .logo {
+    color: #fff;
+  }
+}

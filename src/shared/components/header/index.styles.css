@@ -180,6 +180,10 @@
   .header {
     background-color: rgb(3, 6, 20);
   }
+  .header h2 a {
+    color: #fff;
+  }
+
   .sidebar {
     background-color: rgb(3, 6, 20);
   }
