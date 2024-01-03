@@ -1,11 +1,11 @@
-import { Header } from '../elements/header';
 import { Page } from '../shared/components/page';
 import { NotFound404 } from '../shared/components/404';
+import { HeaderContainer } from '../elements/header/containers';
 
 export const Page404 = () => {
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <Page center>
         <NotFound404 />
       </Page>

@@ -93,4 +93,8 @@
     background-color: #0F1924;
     color: #262EC9;
   }
+
+  .item-element p {
+    color: rgb(213, 217, 233);
+  }
 }

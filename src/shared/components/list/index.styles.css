@@ -69,4 +69,7 @@
   .list__section {
     background-color: rgb(3, 6, 20);
   }
+  .list__header {
+    color: rgb(96, 109, 136);
+  }
 }
