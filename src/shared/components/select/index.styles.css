@@ -47,3 +47,19 @@
   font-size: .625rem;
   z-index: 999;
 }
+
+/* themes */
+@media (prefers-color-scheme: dark) {
+  .select-field label {
+    color: rgb(96, 109, 136);
+  }
+
+  .select-field select {
+    background-color: rgb(10, 15, 35);
+    color: rgb(213, 217, 233);
+  }
+
+  .select-field.select-field--disabled select {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}

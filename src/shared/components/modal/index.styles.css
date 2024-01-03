@@ -17,10 +17,12 @@
   border-radius: 8px;
   min-height: 128px;
   max-height: 70%;
-  min-width: 320px;
+  min-width: 300px;
   max-width: 480px;
   width: 100%;
   overflow-y: auto;
+  margin-inline: 1.625rem;
+  box-sizing: border-box;
 }
 
 .modal .modal__header, .modal .modal__body, .modal .modal__footer {
@@ -51,4 +53,17 @@
 
 .modal .modal__footer button {
   margin-left: .625rem;
+}
+
+/* themes */
+@media (prefers-color-scheme: dark) {
+  .overlay {
+    background-color: rgba(0, 0, 0, .50);
+  }
+
+  .modal {
+    color: rgb(213, 217, 233);
+    background-color: rgb(18, 23, 47);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 11px 15px -7px, rgba(0, 0, 0, 0.14) 0px 24px 38px 3px, rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
+  }
 }
