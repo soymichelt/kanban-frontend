@@ -20,7 +20,6 @@
   min-width: 300px;
   max-width: 480px;
   width: 100%;
-  overflow-y: auto;
   margin-inline: 1.625rem;
   box-sizing: border-box;
 }
@@ -53,6 +52,14 @@
 
 .modal .modal__footer button {
   margin-left: .625rem;
+}
+
+/* mobile */
+@media screen and (max-width: 530px) {
+  .modal {
+    max-height: 90%;
+    overflow: hidden;
+  }
 }
 
 /* themes */
