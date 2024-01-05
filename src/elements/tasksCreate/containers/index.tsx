@@ -17,6 +17,7 @@ export const TaskCreateFormContainer = () => {
   const descriptionField = useField('');
   const stateField = useField('');
   const userIdField = useField('');
+  const priorityField = useField('low');
 
   const { state, ...createTaskAction } = useDataProvider(false);
 
@@ -44,6 +45,7 @@ export const TaskCreateFormContainer = () => {
       description: descriptionField.value as string,
       state: parseInt(stateField.value as string),
       userId: userIdField.value as string,
+      priority: priorityField.value as string,
     })
       .then(() => {
         setRefreshingTasks(true);
@@ -75,6 +77,8 @@ export const TaskCreateFormContainer = () => {
       userId={userIdField.value}
       userIdErrorMessage={userIdField.error}
       onUserChange={userIdField.onChange}
+      priority={priorityField.value}
+      onPriorityChange={priorityField.onChange}
       isLoading={state.statusData === LOADING}
     />
   );

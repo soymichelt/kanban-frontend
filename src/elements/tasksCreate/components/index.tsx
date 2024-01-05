@@ -3,6 +3,8 @@ import { TextField } from '../../../shared/components/textField';
 import { Select } from '../../../shared/components/select';
 import { SECTIONS_LIST } from '../../../shared/constants';
 import { UserSelectContainer } from '../../userSelect/containers';
+import { RadioButton } from '../../../shared/components/radiobutton';
+import { RadioButtonGroup } from '../../../shared/components/radiobuttonGroup';
 
 export type TaskCreateFormProps = {
   isOpen: boolean;
@@ -17,6 +19,8 @@ export type TaskCreateFormProps = {
   onUserChange: React.ChangeEventHandler<HTMLSelectElement>;
   userId?: string | undefined;
   userIdErrorMessage?: string;
+  onPriorityChange?: React.ChangeEventHandler<HTMLInputElement>;
+  priority?: string;
   isLoading?: boolean;
 };
 
@@ -34,6 +38,8 @@ export const TaskCreateForm = (props: TaskCreateFormProps) => {
     onUserChange,
     userId,
     userIdErrorMessage,
+    onPriorityChange,
+    priority,
     isLoading = false,
   } = props;
 
@@ -75,6 +81,33 @@ export const TaskCreateForm = (props: TaskCreateFormProps) => {
             disabled={isLoading}
             errorMessage={userIdErrorMessage}
           />
+
+          <RadioButtonGroup
+            label={`Priority`}
+            vertical
+          >
+            <RadioButton
+              label={`Low`}
+              value={`low`}
+              onChange={onPriorityChange}
+              checked={priority === 'low'}
+              color={`#9e9e9e`}
+            />
+            <RadioButton
+              label={`Medium`}
+              value={`medium`}
+              onChange={onPriorityChange}
+              checked={priority === 'medium'}
+              color={`#ffeb3b`}
+            />
+            <RadioButton
+              label={`High`}
+              value={`high`}
+              onChange={onPriorityChange}
+              checked={priority === 'high'}
+              color={`#f44336`}
+            />
+          </RadioButtonGroup>
         </Modal>
       )}
     </>

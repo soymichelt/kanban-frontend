@@ -8,6 +8,7 @@ export type TaskModel = {
   state: number;
   assignedTo: string;
   userId: string;
+  priority: string;
 };
 
 export const all = async (): Promise<TaskModel[]> => {
