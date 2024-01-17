@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../shared/components/button';
 import { Logo } from '../../../shared/components/logo';
 import { Panel } from '../../../shared/components/panel';
@@ -23,6 +24,8 @@ export type SignupProps = {
 };
 
 export const Signup = (props: SignupProps) => {
+  const navigate = useNavigate();
+
   const {
     className,
     onUsernameChange,
@@ -104,6 +107,7 @@ export const Signup = (props: SignupProps) => {
         fullwidth
         className='mb-4'
         variant='secondary'
+        onClick={() => navigate('/signin')}
       >
         ¿Ya tienes Cuenta? Inicia Sesión
       </Button>

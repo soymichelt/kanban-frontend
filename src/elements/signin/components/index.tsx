@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../../shared/components/button';
 import { Logo } from '../../../shared/components/logo';
 import { Panel } from '../../../shared/components/panel';
@@ -19,6 +19,8 @@ export type SigninProps = {
 };
 
 export const Signin = (props: SigninProps) => {
+  const navigate = useNavigate();
+
   const {
     className,
     onUsernameChange,
@@ -82,6 +84,7 @@ export const Signin = (props: SigninProps) => {
         fullwidth
         className='mb-4'
         variant='secondary'
+        onClick={() => navigate('/signup')}
       >
         ¿Aún no tienes cuenta? Regístrate
       </Button>
