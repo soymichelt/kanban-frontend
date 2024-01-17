@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   color: #172b4d;
+  cursor: pointer;
 }
 .logo span {
   font-weight: 300;
