@@ -3,4 +3,6 @@ export type ItemType = {
   itemState: number;
   itemDescription: string;
   itemCreator: string;
+  itemCreatorId: string;
+  itemPriority?: string;
 };

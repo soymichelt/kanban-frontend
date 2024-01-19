@@ -18,6 +18,7 @@
   font-size: 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .item-element h2 .item-element__header-image {
   display: inline-flex;
@@ -33,6 +34,19 @@
   background-color: #448aff;
   color: #fff;
 }
+.item-element h2 .item-element__header-priority {
+  font-size: 1rem;
+}
+.item-element h2 .item-element__header-priority--low {
+  color: #4caf50;
+}
+.item-element h2 .item-element__header-priority--medium {
+  color: #fbc02d;
+}
+.item-element h2 .item-element__header-priority--high {
+  color: #f44336;
+}
+
 
 .item-element h2, .item-element p {
   margin: 0;

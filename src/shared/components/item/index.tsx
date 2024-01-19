@@ -1,9 +1,12 @@
 import { DraggableProvided } from 'react-beautiful-dnd';
 import CompleteIcon from './../../../assets/complete-icon-blue.svg';
 import EditIcon from './../../../assets/edit-icon-blue.svg';
-import './index.styles.css';
 import { ItemType } from '../../definitions/item';
 import PersonIcon from '@mui/icons-material/Person';
+import MediumIcon from '@mui/icons-material/DragHandleRounded';
+import LowIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import HighIcon from '@mui/icons-material/KeyboardArrowUpRounded';
+import './index.styles.css';
 
 type ItemProps = {
   provided: DraggableProvided;
@@ -33,13 +36,28 @@ export const Item = (props: ItemProps) => {
     >
       <div className='item-element__content'>
         <h2 className='item-element__header'>
-          <span className='item-element__header-image'>
-            {data.itemCreator
-              ? data.itemCreator.charAt(0)
-              : <PersonIcon />
-            }
+          <span className={`item-element__header-author`}>
+            <span className='item-element__header-image'>
+              {data.itemCreator
+                ? data.itemCreator.charAt(0)
+                : <PersonIcon />
+              }
+            </span>
+            {data.itemCreator || 'Unknown'}
           </span>
-          {data.itemCreator || 'Unknown'}
+          {data.itemPriority && (
+            <span className={`item-element__header-priority item-element__header-priority--${data.itemPriority}`}>
+              {data.itemPriority === 'low' && (
+                <LowIcon />
+              )}
+              {data.itemPriority === 'medium' && (
+                <MediumIcon />
+              )}
+              {data.itemPriority === 'high' && (
+                <HighIcon />
+              )}
+            </span>
+          )}
         </h2>
         <p>{data.itemDescription}</p>
       </div>
