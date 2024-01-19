@@ -8,6 +8,7 @@ import { RadioButtonGroup } from '../../../shared/components/radiobuttonGroup';
 
 export type TaskCreateFormProps = {
   isOpen: boolean;
+  title: string;
   onCloseModal: () => void;
   onAcceptModal?: () => void;
   onDescriptionChange: React.ChangeEventHandler<HTMLTextAreaElement>;
@@ -27,6 +28,7 @@ export type TaskCreateFormProps = {
 export const TaskCreateForm = (props: TaskCreateFormProps) => {
   const {
     isOpen = false,
+    title,
     onCloseModal,
     onAcceptModal,
     onDescriptionChange,
@@ -47,7 +49,7 @@ export const TaskCreateForm = (props: TaskCreateFormProps) => {
     <>
       {isOpen && (
         <Modal
-          title={`Creando una tarea...`}
+          title={title}
           onClose={onCloseModal}
           onAccept={onAcceptModal}
           acceptButtonDisabled={isLoading}

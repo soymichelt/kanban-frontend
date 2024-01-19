@@ -9,7 +9,7 @@ export const HeaderContainer = () => {
   const { setAuth, auth, setFormCreate } = useContext(globalState);
 
   const handleCreate = () => {
-    setFormCreate({ isOpen: true });
+    setFormCreate({ isOpen: true, type: 'create' });
   };
 
   const handleSignout = () => {

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { globalState } from '../../../shared/states/global';
 import { TaskCreateForm } from '../components';
-import { create } from '../../../services/tasks';
+import { create, update } from '../../../services/tasks';
 import { useField } from '../../../shared/hooks/useField';
 import { LOADING, useDataProvider } from '../../../shared/hooks/useDataProvider';
 
@@ -17,12 +17,31 @@ export const TaskCreateFormContainer = () => {
   const descriptionField = useField('');
   const stateField = useField('');
   const userIdField = useField('');
-  const priorityField = useField('low');
-
+  const priorityField = useField('');
   const { state, ...createTaskAction } = useDataProvider(false);
 
+  useEffect(() => {
+    if (formCreate.formData) {
+      const { formData } = formCreate;
+
+      descriptionField.update(formData.description ?? '');
+      stateField.update(formData.state?.toString() ?? '2');
+      userIdField.update(formData.userId ?? '');
+      priorityField.update(formData.priority ?? 'low');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formCreate.formData]);
+
+  const reset = () => {
+    descriptionField.reset();
+    stateField.reset();
+    userIdField.reset();
+    priorityField.reset();
+    setFormCreate({ isOpen: false, type: 'create' });
+  };
+
   const handleCloseModal = () => {
-    setFormCreate({ isOpen: false });
+    reset();
   };
 
   const handleAcceptModal = () => {
@@ -41,20 +60,30 @@ export const TaskCreateFormContainer = () => {
     }
 
     createTaskAction.loading();
-    create({
-      description: descriptionField.value as string,
-      state: parseInt(stateField.value as string),
-      userId: userIdField.value as string,
-      priority: priorityField.value as string,
-    })
+
+    let actionPromise: Promise<unknown>;
+    if (formCreate.type === 'create') {
+      actionPromise = create({
+        description: descriptionField.value as string,
+        state: parseInt(stateField.value as string),
+        userId: userIdField.value as string,
+        priority: priorityField.value as string,
+      });
+    } else {
+      actionPromise = update(formCreate?.formData?.id as string, {
+        description: descriptionField.value as string,
+        state: parseInt(stateField.value as string),
+        userId: userIdField.value as string,
+        priority: priorityField.value as string,
+      });
+    }
+
+    actionPromise
       .then(() => {
         setRefreshingTasks(true);
-        descriptionField.reset();
-        stateField.reset();
-        userIdField.reset();
+        reset();
         createTaskAction.success();
         showNotification('Task created 🍻', 'info');
-        setFormCreate({ isOpen: false });
       })
       .catch((error: any) => {
         createTaskAction.catch(error);
@@ -66,6 +95,7 @@ export const TaskCreateFormContainer = () => {
   return (
     <TaskCreateForm
       isOpen={formCreate.isOpen}
+      title={`${formCreate.type === 'create' ? 'Creando' : 'Editando'} una tarea...`}
       onCloseModal={handleCloseModal}
       onAcceptModal={handleAcceptModal}
       description={descriptionField.value}

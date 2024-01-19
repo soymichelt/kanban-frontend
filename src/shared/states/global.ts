@@ -14,18 +14,19 @@ export type AuthStateProps = {
 
 export type FormTaskStateProps = {
   isOpen: boolean;
+  type: 'create' | 'edit';
   formData?: {
+    id?: string;
     description?: string;
     state?: number;
     userId?: string;
+    priority?: string;
   };
 };
 
 export type GlobalStateSchema = {
   auth: AuthStateProps,
   setAuth: (auth: AuthStateProps) => void;
-  formEdit: FormTaskStateProps;
-  setFormEdit: (form: FormTaskStateProps) => void;
   formCreate: FormTaskStateProps;
   setFormCreate: (form: FormTaskStateProps) => void;
   refreshingTasks: boolean;
@@ -38,12 +39,9 @@ export const initialGlobalState: GlobalStateSchema = {
     isLogged: true,
   },
   setAuth: () => { },
-  formEdit: {
-    isOpen: false,
-  },
-  setFormEdit: () => { },
   formCreate: {
     isOpen: false,
+    type: 'create',
   },
   setFormCreate: () => { },
   refreshingTasks: true,

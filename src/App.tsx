@@ -20,7 +20,6 @@ const App = () => {
       }
       : undefined,
   });
-  const [formEdit, setFormEdit] = useState<FormTaskStateProps>(initialGlobalState.formEdit);
   const [formCreate, setFormCreate] = useState<FormTaskStateProps>(initialGlobalState.formCreate);
   const [refreshingTasks, setRefreshingTasks] = useState<boolean>(initialGlobalState.refreshingTasks);
 
@@ -50,8 +49,6 @@ const App = () => {
     <globalState.Provider value={{
       auth,
       setAuth,
-      formEdit,
-      setFormEdit,
       formCreate,
       setFormCreate,
       refreshingTasks,

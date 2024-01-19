@@ -48,9 +48,28 @@ export const create = async (task: Omit<TaskModel, 'taskId' | 'assignedTo'>): Pr
   return fn;
 }
 
-export const updateState = async (taskId: string, state: number): Promise<TaskModel> => {
+export const update = async (taskId: string, task: Omit<TaskModel, 'taskId' | 'assignedTo'>): Promise<TaskModel> => {
   const fn = new Promise<TaskModel>((resolve, reject) => {
     fetch(`${TASK_API_URL}/${taskId}`, {
+      method: 'PATCH',
+      headers: {
+        'Host': API_HOST_HEADER,
+        'Authorization': getAuthHeader() as string,
+      },
+      redirect: 'follow',
+      body: JSON.stringify(task),
+    })
+      .then((res) => res.text())
+      .then((data) => resolve(JSON.parse(data)))
+      .catch((error) => reject(error));
+  });
+
+  return fn;
+}
+
+export const updateState = async (taskId: string, state: number): Promise<TaskModel> => {
+  const fn = new Promise<TaskModel>((resolve, reject) => {
+    fetch(`${TASK_API_URL}/state/${taskId}`, {
       method: 'PATCH',
       headers: {
         'Host': API_HOST_HEADER,

@@ -29,6 +29,7 @@ export const Select = (props: SelectProps) => {
       <label>{label}</label>
       <select
         defaultValue={value}
+        value={value}
         onChange={onChange}
         disabled={disabled}
       >

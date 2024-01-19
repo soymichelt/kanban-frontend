@@ -12,6 +12,7 @@ export const useField = (defaultValue?: string) => {
       setFieldState({ value: e.currentTarget.value });
     };
     const reset = () => setFieldState({ value: defaultValue });
+    const update = (value: string) => setFieldState({ value });
     const isEmpty = () => !fieldState.value;
     const setError = (error: string) => setFieldState({ ...fieldState, error });
 
@@ -20,6 +21,7 @@ export const useField = (defaultValue?: string) => {
         error: fieldState.error,
         onChange,
         reset,
+        update,
         isEmpty,
         setError,
     };

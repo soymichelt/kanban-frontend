@@ -6,9 +6,14 @@ import { TaskModel, all, updateState } from '../../../services/tasks';
 import { useContext, useEffect, useState } from 'react';
 import { SECTIONS_LIST } from '../../../shared/constants';
 import { globalState } from '../../../shared/states/global';
+import { ItemType } from '../../../shared/definitions/item';
 
 export const TasksContainer = () => {
-  const { refreshingTasks, setRefreshingTasks } = useContext(globalState);
+  const {
+    refreshingTasks,
+    setRefreshingTasks,
+    setFormCreate,
+  } = useContext(globalState);
   const { state, ...tasksAction } = useDataProvider();
 
   const getTasks = () => {
@@ -60,6 +65,20 @@ export const TasksContainer = () => {
     tasksAction.success(newTaskItems);
   };
 
+  const handleEdit = (item: ItemType) => {
+    setFormCreate({
+      isOpen: true,
+      type: 'edit',
+      formData: {
+        id: item.itemId,
+        description: item.itemDescription,
+        state: item.itemState,
+        userId: item.itemCreatorId,
+        priority: item.itemPriority,
+      },
+    });
+  };
+
   return (
     <Tasks
       sectionList={SECTIONS_LIST}
@@ -67,10 +86,12 @@ export const TasksContainer = () => {
         itemId: item.taskId,
         itemState: item.state,
         itemDescription: item.description,
+        itemCreatorId: item.userId,
         itemCreator: item.assignedTo,
+        itemPriority: item.priority,
       }))}
       loading={false}
-      onEdit={(item) => { console.log(item)}}
+      onEdit={handleEdit}
       onComplete={handleComplete}
       onDragEnd={handlerDragEnd}
       completeId={completeId as string}
